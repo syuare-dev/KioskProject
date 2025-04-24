@@ -7,7 +7,6 @@ public class Menu {
 
     private final List<MenuItem> menuItems = new ArrayList<>();
 
-
     // 메뉴 추가
     public void addMenu(MenuItem menuItem) {
         menuItems.add(menuItem);
@@ -17,13 +16,14 @@ public class Menu {
     public void menuBoard() {
         int num = 1;
         for (MenuItem item : menuItems) {
-            System.out.printf("%d.\t%s\t|\tW %.2f\t|\t%s%n",
+            System.out.printf("%d. %-20s\t| W %.2f\t|\t%s%n",
                     num, item.getBurger(),
                     item.getPrice(),
                     item.getDescription());
             num++;
         }
-        System.out.println(0 + ". \t 종료 \t |");
+        System.out.printf("%d. %-18s\t|%n", 0, "종료");
+
     }
 
     // 버거 메뉴판 - 단일 상품
@@ -38,5 +38,4 @@ public class Menu {
             System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
         }
     }
-
 }
