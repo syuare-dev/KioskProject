@@ -14,17 +14,17 @@ public class Kiosk {
     }
 
     // 기능(메서드)
+    // 입력, 반복문
     public void startKiosk (){
         while(true){
             System.out.print("메뉴를 선택해주세요(0: 종료): ");
             String inputStr = scanner.nextLine().trim(); //입력
             try {
                 int inputKey = Integer.parseInt(inputStr); // 입력값 > 정수로
-                System.out.println("inputKey = " + inputKey); // inputKey 값 출력
                 if(inputKey == 0) { // 탈출
                     System.out.println("키오스크를 종료합니다.");
                     break;
-                } else if (inputKey >= 1 && inputKey <= menu.getMenuItems().size()) {
+                } else if (inputKey >= 1 && inputKey <= menu.getMenuBurger().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.menuBoardSingle(inputKey);
                 } else {
