@@ -24,7 +24,7 @@ public class Kiosk {
                 if(inputKey == 0) { // 탈출
                     System.out.println("키오스크를 종료합니다.");
                     break;
-                } else if (inputKey >= 1 && inputKey <= menu.getMenuBurgers().size()) {
+                } else if (inputKey >= 1 && inputKey <= menu.getMenuBurger().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.menuBoardSingle(inputKey);
                 } else {
