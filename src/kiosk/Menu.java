@@ -36,7 +36,7 @@ public class Menu {
         System.out.println(select);
     }
 
-    public List<MenuItem> getMenuBurger() {
+    public List<MenuItem> getMenuBurgers() {
         return menuBurgers;
     }
 }
