@@ -5,7 +5,11 @@ import java.util.List;
 
 public class Menu {
 
+    // 속성
     private final List<MenuItem> menuItems = new ArrayList<>();
+
+
+    // 기능(메서드)
 
     // 메뉴 추가
     public void addMenu(MenuItem menuItem) {
@@ -16,7 +20,7 @@ public class Menu {
     public void menuBoard() {
         int num = 1;
         for (MenuItem item : menuItems) {
-            System.out.printf("%d. %-20s\t| W %.2f\t|\t%s%n",
+            System.out.printf("%d. %-20s\t| W %.1f\t|\t%s%n",
                     num, item.getBurger(),
                     item.getPrice(),
                     item.getDescription());
@@ -28,14 +32,14 @@ public class Menu {
 
     // 버거 메뉴판 - 단일 상품
     public void menuBoardSingle(int index) {
-        if (index > 0 && index <= menuItems.size()) {
-            MenuItem select = menuItems.get(index-1);
-            System.out.println("선택한 메뉴는: " +
-                    select.getBurger() +
-                    " | W " + select.getPrice() +
-                    " | " + select.getDescription());
-        } else {
-            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-        }
+        MenuItem select = menuItems.get(index-1);
+        System.out.println("선택한 메뉴는: " +
+                select.getBurger() +
+                " | W " + select.getPrice() +
+                " | " + select.getDescription());
+    }
+
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
     }
 }
