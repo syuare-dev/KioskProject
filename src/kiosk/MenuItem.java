@@ -7,13 +7,14 @@ public class MenuItem {
     private final double price;
     private final String description;
 
-
     // 생성자
     MenuItem(String burger, double price, String description) {
         this.burger = burger;
         this.price = price;
         this.description = description;
     }
+
+    // 기능(메서드)
 
     // 버거 이름 조회
     public String getBurger() {
@@ -29,7 +30,6 @@ public class MenuItem {
     public String getDescription() {
         return description;
     }
-
 
     // 객체 데이터값 출력 형식 변경
     @Override

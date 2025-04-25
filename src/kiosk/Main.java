@@ -1,12 +1,6 @@
 package kiosk;
 
-import java.util.Scanner;
-
-
-
 public class Main {
-
-    public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -24,15 +18,8 @@ public class Main {
         menu.addMenu(mcChicken);
 
         menu.menuBoard();
+        Kiosk kiosk = new Kiosk(menu);
+        kiosk.startKiosk();
 
-        while(true){
-            System.out.print("메뉴를 선택해주세요(0: 종료): ");
-            int inputKey = scanner.nextInt();
-            if(inputKey == 0) {
-                System.out.println("키오스크를 종료합니다.");
-                break;
-            }
-            menu.menuBoardSingle(inputKey);
-        }
     }
 }
