@@ -19,6 +19,11 @@ public class Main {
         MenuItem peachIcedTea = new MenuItem("Peach Iced Tea", 3.6, "세계 3대 홍차, 우바산 홍차 베이스로 향긋하게 즐기는 복숭아 아이스티","Drink");
         MenuItem americano = new MenuItem("Americano", 3.1, "진한 에스프레소 샷에 따듯한 물을 섞어 더 향긋하게 즐기는 정통 아메리카노","Drink");
 
+        MenuItem chocoChurros = new MenuItem("Choco Churros", 3.2, "바삭한 초코 츄러스에 가득찬 진한 초코 필링! 한입 크기로 즐기는 달콤한 초코 츄러스","Dessert");
+        MenuItem oreoMcFlurry = new MenuItem("Oreo McFlurry", 4.3, "우유 듬뿍 신선한 아이스크림에 아삭아삭 오레오 쿠키가 가득!","Dessert");
+        MenuItem oreoAffogato = new MenuItem("Oreo Affogato", 4.1, "진한 에스프레소에 바닐라 아이스크림으로 달콤 쌉쌀하게, 오레오 쿠키로 바삭함까지!","Dessert");
+        MenuItem strawberryCone = new MenuItem("Strawberry Cone", 1.8, "신선한 1등급 원유와 딸기과즙으로 만든 아이스크림","Dessert");
+
 
         // 객체 데이터 추가
         for (MenuItem menuItem : Arrays.asList(
@@ -29,7 +34,11 @@ public class Main {
                 cocaCola,
                 sprite,
                 peachIcedTea,
-                americano)) {
+                americano,
+                chocoChurros,
+                oreoMcFlurry,
+                oreoAffogato,
+                strawberryCone)) {
             menu.addMenu(menuItem);
         }
 
