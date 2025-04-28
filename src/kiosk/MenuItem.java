@@ -6,12 +6,14 @@ public class MenuItem {
     private final String burger;
     private final double price;
     private final String description;
+    private String category;
 
     // 생성자
-    MenuItem(String burger, double price, String description) {
+    MenuItem(String burger, double price, String description, String category) {
         this.burger = burger;
         this.price = price;
         this.description = description;
+        this.category = category;
     }
 
     // 기능(메서드)
@@ -31,10 +33,14 @@ public class MenuItem {
         return description;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     // 객체 데이터값 출력 형식 변경
     @Override
     public String toString() {
-        return String.format("%s | %.2f원 | %s", burger, price, description);
+        return String.format("%-20s\t|\tW %-3.1f\t|\t%s", burger, price, description);
     }
 }
 
