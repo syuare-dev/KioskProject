@@ -6,7 +6,7 @@ public class MenuItem {
     private final String burger;
     private final double price;
     private final String description;
-    private String category;
+    private final String category;
 
     // 생성자
     MenuItem(String burger, double price, String description, String category) {
