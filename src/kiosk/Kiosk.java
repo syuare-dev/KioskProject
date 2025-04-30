@@ -22,7 +22,7 @@ public class Kiosk {
         System.out.println("===============================");
         System.out.println("맥도나루도에 오신 것을 환영합니다.");
         do {
-            menuSelectMain();
+            menuSelectMain(); // 메뉴 선택 메서드 호출
         } while (!escapeKey);
         System.out.println("===============================");
         System.out.println("맥도나루도 Kiosk를 종료합니다.\n감사합니다.");
@@ -30,7 +30,7 @@ public class Kiosk {
 
     // 0. 메뉴 선택
     public void menuSelectMain() {
-        menu.menuSelect();
+        menu.menuSelect(); //
         System.out.println("===============================");
         System.out.print("메뉴를 선택해주세요: ");
         // 메뉴 입력란
@@ -38,11 +38,11 @@ public class Kiosk {
         try {
             int menuInput = Integer.parseInt(inputStr); //입력
             switch (menuInput){
-                case 1: menuSelectBurger(); break;
-                case 2: menuSelectDrink(); break;
-                case 3: menuSelectDessert(); break;
-                case 4: orderCart(); break;
-                case 0: escapeKey = true; break;
+                case 1: menuSelectBurger(); break; // 1. 버거 메뉴
+                case 2: menuSelectDrink(); break; // 2. 음료 메뉴
+                case 3: menuSelectDessert(); break; // 3. 디저트 메뉴
+                case 4: orderCart(); break; // 4. 장바구나 & 주문 메뉴
+                case 0: escapeKey = true; break; // 0. 종료
                 default:
                     System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
             }
@@ -58,7 +58,7 @@ public class Kiosk {
             menu.menuBoardBurger(); // Burger 메뉴 출력
             System.out.println("===============================");
             System.out.print("버거 종류를 선택해주세요(0: 종료): ");
-            String burgerSelect = scanner.nextLine().trim();
+            String burgerSelect = scanner.nextLine().trim(); // 문자열 입력
             try { // 버거 메뉴 선택
                 int bsNum = Integer.parseInt(burgerSelect); // 입력값 > 정수로
                 if(bsNum == 0) { // 탈출
@@ -68,7 +68,7 @@ public class Kiosk {
                 } else if (bsNum >= 1 && bsNum <= menu.getBurgerMenu().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuBurger(bsNum);
-                    BurgerAddToCart(bsNum);
+                    BurgerAddToCart(bsNum); // 장바구니(버거) 추가
                 } else {
                     System.out.println("잘못 입력하셨습니다: " + bsNum);
                 }
@@ -84,7 +84,7 @@ public class Kiosk {
             menu.menuBoardDrink(); // Drink 메뉴 출력
             System.out.println("===============================");
             System.out.print("음료 종류를 선택해주세요(0: 종료): ");
-            String drinkSelect = scanner.nextLine().trim();
+            String drinkSelect = scanner.nextLine().trim(); // 문자열 입력
             try { // 버거 메뉴 선택
                 int dsNum = Integer.parseInt(drinkSelect); // 입력값 > 정수로
                 if(dsNum == 0) { // 탈출
@@ -94,7 +94,7 @@ public class Kiosk {
                 } else if (dsNum >= 1 && dsNum <= menu.getDrinkMenu().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuDrink(dsNum);
-                    DrinkAddToCart(dsNum);
+                    DrinkAddToCart(dsNum); // 장바구니(음료) 추가
                 } else {
                     System.out.println("잘못 입력하셨습니다: " + dsNum);
                 }
@@ -110,7 +110,7 @@ public class Kiosk {
             menu.menuBoardDessert(); // Dessert 메뉴 출력
             System.out.println("===============================");
             System.out.print("디저트 종류를 선택해주세요(0: 종료): ");
-            String dessertSelect = scanner.nextLine().trim();
+            String dessertSelect = scanner.nextLine().trim(); // 문자열 입력
             try { // 버거 메뉴 선택
                 int dstNum = Integer.parseInt(dessertSelect); // 입력값 > 정수로
                 if(dstNum == 0) { // 탈출
@@ -120,7 +120,7 @@ public class Kiosk {
                 } else if (dstNum >= 1 && dstNum <= menu.getDessertMenu().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuDessert(dstNum);
-                    DessertAddToCart(dstNum);
+                    DessertAddToCart(dstNum); // 장바구니(디저트) 추가
                 } else {
                     System.out.println("잘못 입력하셨습니다: " + dstNum);
                 }
@@ -154,15 +154,16 @@ public class Kiosk {
         while (true){
             System.out.println("===============================");
             System.out.print("장바구니에 추가하시겠습니까?(1:추가, 2:취소)");
-            String inputKey = scanner.nextLine().trim();
+            String inputKey = scanner.nextLine().trim(); // 문자열 입력
             try {
-                int checkKey = Integer.parseInt(inputKey);
+                int checkKey = Integer.parseInt(inputKey); // 입력값 > 정수로
                 switch (checkKey) {
                     case 1:
-                        shoppingCart.addToCart(menuItem);
+                        shoppingCart.addToCart(menuItem); // 장바구니 추가
                         System.out.println("===============================");
                         System.out.println("해당 메뉴를 장바구니에 추가하셨습니다.");
-                        orderCart();
+                        orderCart(); // 장바구니 확인
+//                        menuSelectMain();
                         return;
                     case 2:
                         System.out.println("===============================");
@@ -179,13 +180,13 @@ public class Kiosk {
         }
     }
 
-    // 장바구니 품목 계산
+    // 장바구니 확인
     public void orderCart() {
         if(shoppingCart.getShoppingCart().isEmpty()){
             System.out.println("장바구니가 비어있습니다.");
         } else {
-            shoppingCart.checkCart();
-            payToCart();
+            shoppingCart.checkCart(); // 장바구니 메뉴 조회
+            payToCart(); // 장바구니 결제
         }
     }
 
@@ -195,15 +196,15 @@ public class Kiosk {
         System.out.println("장바구니에 추가된 메뉴를 즉시 결제하시겠습니까?");
         System.out.println("1. 결제 \t 2.메뉴판으로 돌아가기");
         while (true){
-            String inputKey = scanner.nextLine().trim();
+            String inputKey = scanner.nextLine().trim(); // 문자열 입력
             try {
-                int checkKey = Integer.parseInt(inputKey);
+                int checkKey = Integer.parseInt(inputKey); // 입력값 정수로
                 switch (checkKey){
                     case 1:
                         System.out.println("===============================");
                         System.out.println("결제가 완료되었습니다.");
-                        System.out.printf("결제된 금액: W %-3.1f\n", shoppingCart.totalPrice());
-                        shoppingCart.removeCart();
+                        System.out.printf("결제된 금액: W %-3.1f\n", shoppingCart.totalPrice()); // 장바구니 메뉴 총 금액
+                        shoppingCart.removeCart(); // 장바구니 초기화
                         return;
                     case 2:
                         System.out.println("===============================");
