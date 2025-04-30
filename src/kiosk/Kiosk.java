@@ -7,6 +7,7 @@ public class Kiosk {
     // 속성
     public static Scanner scanner = new Scanner(System.in);
     private final Menu menu;
+    boolean escapeKey = false;
 
     // 생성자
     public Kiosk(Menu menu){
@@ -14,34 +15,42 @@ public class Kiosk {
     }
 
     // 기능(메서드)
-    // 입력, 반복문
+    // Kiosk 기능
     public void startKiosk (){
-        menu.menuSelect();
         System.out.println("===============================");
-        System.out.println("Welcome to ");
-        System.out.print("메뉴를 선택해주세요: ");
-        String inputStr = scanner.nextLine().trim(); // 메뉴 입력란
-        int menuInput = Integer.parseInt(inputStr);//입력
-        switch (menuInput){
-            case 1: menuSelectBurger(); break;
-            case 2: menuSelectDrink(); break;
-            case 3: menuSelectDessert(); break;
-            case 0: break;
-            default:
-                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
-        }
+        System.out.println("맥도나루도에 오신 것을 환영합니다.");
+        System.out.println("===============================");
+        menu.menuSelect();
+        do {
+            System.out.println("===============================");
+            System.out.print("메뉴를 선택해주세요: ");
+            String inputStr = scanner.nextLine().trim(); //
+            try {
+                // 메뉴 입력란
+                int menuInput = Integer.parseInt(inputStr);//입력
+                switch (menuInput){
+                    case 1: menuSelectBurger(); break;
+                    case 2: menuSelectDrink(); break;
+                    case 3: menuSelectDessert(); break;
+                    case 0:
+                        escapeKey = true;
+                        break;
+                    default:
+                        System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해주세요: " + inputStr);
+            }
 
-//        if(menuInput == 1) { // 1. Burger 선택 시
-//            menuSelectBurger();
-//        }
+        } while (!escapeKey);
     }
 
-
-
-    // 1. Burger 선택 메서드
+    // 1. Burger 선택 시
     public void menuSelectBurger() {
+        System.out.println("===============================");
         menu.menuBoardBurger(); // Burger 메뉴 출력
         while (true){
+            System.out.println("===============================");
             System.out.print("버거 종류를 선택해주세요(0: 종료): ");
             String burgerSelect = scanner.nextLine().trim();
             try { // 버거 메뉴 선택
@@ -62,10 +71,12 @@ public class Kiosk {
         }
     }
 
-    // 2. Drink 선택 메서드
+    // 2. Drink 선택 시
     public void menuSelectDrink() {
-        menu.menuBoardDrink(); // Burger 메뉴 출력
+        System.out.println("===============================");
+        menu.menuBoardDrink(); // Drink 메뉴 출력
         while (true){
+            System.out.println("===============================");
             System.out.print("음료 종류를 선택해주세요(0: 종료): ");
             String drinkSelect = scanner.nextLine().trim();
             try { // 버거 메뉴 선택
@@ -74,7 +85,7 @@ public class Kiosk {
                     System.out.println("뒤로 돌아갑니다.");
                     menu.menuSelect();
                     break;
-                } else if (dsNum >= 1 && dsNum <= menu.getBurgerMenu().size()) {
+                } else if (dsNum >= 1 && dsNum <= menu.getDrinkMenu().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuDrink(dsNum);
                 } else {
@@ -86,10 +97,13 @@ public class Kiosk {
         }
     }
 
+    // 3. Dessert 선택 시
     public void menuSelectDessert() {
-        menu.menuBoardDessert(); // Burger 메뉴 출력
+        System.out.println("===============================");
+        menu.menuBoardDessert(); // Dessert 메뉴 출력
         while (true){
-            System.out.print("버거 종류를 선택해주세요(0: 종료): ");
+            System.out.println("===============================");
+            System.out.print("디저트 종류를 선택해주세요(0: 종료): ");
             String dessertSelect = scanner.nextLine().trim();
             try { // 버거 메뉴 선택
                 int dstNum = Integer.parseInt(dessertSelect); // 입력값 > 정수로
@@ -97,7 +111,7 @@ public class Kiosk {
                     System.out.println("뒤로 돌아갑니다.");
                     menu.menuSelect();
                     break;
-                } else if (dstNum >= 1 && dstNum <= menu.getBurgerMenu().size()) {
+                } else if (dstNum >= 1 && dstNum <= menu.getDessertMenu().size()) {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuDessert(dstNum);
                 } else {
@@ -108,39 +122,4 @@ public class Kiosk {
             }
         }
     }
-
-
-
-
-
-        // 기존 kiosk 동작
-//        while(true){
-//            System.out.print("버거 종류를 선택해주세요(0: 종료): ");
-//            inputStr = scanner.nextLine().trim(); //입력
-//            try {
-//                inputKey = Integer.parseInt(inputStr); // 입력값 > 정수로
-//                if(inputKey == 0) { // 탈출
-//                    System.out.println("키오스크를 종료합니다.");
-//                    break;
-//                } else if (inputKey >= 1 && inputKey <= menu.getMenuBoard().size()) {
-//                    // 버거 메뉴판 - 단일 상품 출력
-//                    menu.menuBoardSingle(inputKey);
-//                } else {
-//                    System.out.println("잘못 입력하셨습니다: " + inputKey);
-//                }
-//            } catch (NumberFormatException e) {
-//                System.out.println("숫자를 입력해주세요: " + inputStr);
-//            }
-//
-//        }
-
-
-
-
-
-
-
-
-
-
 }

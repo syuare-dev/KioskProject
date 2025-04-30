@@ -6,16 +6,14 @@ import java.util.List;
 public class Menu {
 
     // 속성
-    // 메뉴 저장 고간
-    private final List<MenuItem> menuBoard = new ArrayList<>();
+    // 카테고리별 메뉴 List
     private final List<MenuItem> burgerMenu = new ArrayList<>();
     private final List<MenuItem> drinkMenu = new ArrayList<>();
     private final List<MenuItem> dessertMenu = new ArrayList<>();
 
 
     // 기능(메서드)
-
-    // 메뉴 추가 - category 별로 추가
+    // 메뉴 추가 - category
     public void addMenu(MenuItem menuItem) {
         switch(menuItem.getCategory()) {
             case "Burger":
@@ -30,15 +28,9 @@ public class Menu {
         }
     }
 
-    // 메뉴 추가
-//    public void addMenu(MenuItem menuItem) {
-//        menuBoard.add(menuItem);
-//    }
-
-
     // 기본 메뉴
     public void menuSelect() {
-        System.out.println("[ 맥도나루도 - 메뉴 ]");
+        System.out.println("[ 기본 메뉴 ]");
         System.out.println("1. Burger");
         System.out.println("2. Drink");
         System.out.println("3. Dessert");
@@ -53,8 +45,10 @@ public class Menu {
             System.out.println(num + ". " + item);
             num++;
         }
+        System.out.println("0. 뒤로가기");
     }
 
+    // 음료 메뉴
     public void menuBoardDrink() {
         int num =1;
         System.out.println("[ 맥도나루도 - 음료 ]");
@@ -62,8 +56,10 @@ public class Menu {
             System.out.println(num + ". " + item);
             num++;
         }
+        System.out.println("0. 뒤로가기");
     }
 
+    // 디저트 메뉴
     public void menuBoardDessert() {
         int num =1;
         System.out.println("[ 맥도나루도 - 디저트 ]");
@@ -71,47 +67,22 @@ public class Menu {
             System.out.println(num + ". " + item);
             num++;
         }
+        System.out.println("0. 뒤로가기");
     }
 
-
-
-    // 버거 메뉴판 조회 - 전체
-//    public void menuBoardBurger() {
-//
-//        int num = 1;
-//        System.out.println("[ 맥도나루도 - Burger]");
-//        for (MenuItem item : menuBoard) {
-//            System.out.println(num + ". " + item);
-//            num++;
-//        }
-//        System.out.printf("%d. %-18s\t|%n", 0, "종료");
-//    }
-
-//    public void menuBoardBurger() {
-//        int num = 1;
-//        System.out.println("[ 맥도나루도 - Burger]");
-//        for (MenuItem item : menuBoard) {
-//            System.out.println(num + ". " + item);
-//            num++;
-//        }
-//        System.out.printf("%d. %-18s\t|%n", 0, "종료");
-//    }
-
-    // 버거 메뉴판 - 단일 상품
-//    public void menuBoardSingle(int index) {
-//        MenuItem select = menuBoard.get(index-1);
-//    }
-
+    // 버거 단품 메뉴 조회
     public void singleMenuBurger(int index) {
         MenuItem select = burgerMenu.get(index-1);
         System.out.println(select);
     }
 
+    // 음료 단품 메뉴 조회
     public void singleMenuDrink(int index) {
         MenuItem select = drinkMenu.get(index-1);
         System.out.println(select);
     }
 
+    // 디저트 단품 메뉴 조회
     public void singleMenuDessert(int index) {
         MenuItem select = dessertMenu.get(index-1);
         System.out.println(select);
@@ -121,7 +92,12 @@ public class Menu {
         return burgerMenu;
     }
 
-    public List<MenuItem> getMenuBoard() {
-        return menuBoard;
+    public List<MenuItem> getDrinkMenu() {
+        return drinkMenu;
     }
+
+    public List<MenuItem> getDessertMenu() {
+        return dessertMenu;
+    }
+
 }
