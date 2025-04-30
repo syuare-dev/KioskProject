@@ -7,7 +7,7 @@ public class Kiosk {
     // 속성
     public static Scanner scanner = new Scanner(System.in);
     private final Menu menu;
-    private final ShoppingCart shoppingCart = new ShoppingCart();
+    private final ShoppingCart shoppingCart = new ShoppingCart(); // 장바구니 List 초기화
     private boolean escapeKey = false;
 
     // 생성자
@@ -162,7 +162,7 @@ public class Kiosk {
                         shoppingCart.addToCart(menuItem);
                         System.out.println("===============================");
                         System.out.println("해당 메뉴를 장바구니에 추가하셨습니다.");
-                        System.out.println(menuItem);
+                        shoppingCart.checkCart();
                         return; // 메서드 종료
                     case 2:
                         System.out.println("===============================");
