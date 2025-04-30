@@ -42,9 +42,7 @@ public class Main {
             menu.addMenu(menuItem);
         }
 
-        // menu.menuBoardBurger();
         Kiosk kiosk = new Kiosk(menu);
         kiosk.startKiosk();
-
     }
 }
