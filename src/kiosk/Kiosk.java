@@ -15,7 +15,6 @@ public class Kiosk {
         this.menu = menu;
     }
 
-
     // 기능(메서드)
     // Kiosk 기능
     public void startKiosk (){
@@ -69,6 +68,7 @@ public class Kiosk {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuBurger(bsNum);
                     BurgerAddToCart(bsNum); // 장바구니(버거) 추가
+                    break;
                 } else {
                     System.out.println("잘못 입력하셨습니다: " + bsNum);
                 }
@@ -95,6 +95,7 @@ public class Kiosk {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuDrink(dsNum);
                     DrinkAddToCart(dsNum); // 장바구니(음료) 추가
+                    break;
                 } else {
                     System.out.println("잘못 입력하셨습니다: " + dsNum);
                 }
@@ -121,6 +122,7 @@ public class Kiosk {
                     // 버거 메뉴판 - 단일 상품 출력
                     menu.singleMenuDessert(dstNum);
                     DessertAddToCart(dstNum); // 장바구니(디저트) 추가
+                    break;
                 } else {
                     System.out.println("잘못 입력하셨습니다: " + dstNum);
                 }
@@ -163,7 +165,6 @@ public class Kiosk {
                         System.out.println("===============================");
                         System.out.println("해당 메뉴를 장바구니에 추가하셨습니다.");
                         orderCart(); // 장바구니 확인
-//                        menuSelectMain();
                         return;
                     case 2:
                         System.out.println("===============================");
