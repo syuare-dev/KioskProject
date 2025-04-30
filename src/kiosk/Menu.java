@@ -45,6 +45,7 @@ public class Menu {
             System.out.println(num + ". " + item);
             num++;
         }
+        System.out.println("0. 뒤로가기");
     }
 
     // 음료 메뉴
@@ -55,6 +56,7 @@ public class Menu {
             System.out.println(num + ". " + item);
             num++;
         }
+        System.out.println("0. 뒤로가기");
     }
 
     // 디저트 메뉴
@@ -65,6 +67,7 @@ public class Menu {
             System.out.println(num + ". " + item);
             num++;
         }
+        System.out.println("0. 뒤로가기");
     }
 
     // 버거 단품 메뉴 조회
