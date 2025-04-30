@@ -34,14 +34,14 @@ public class Kiosk {
         System.out.println("===============================");
         System.out.print("메뉴를 선택해주세요: ");
         // 메뉴 입력란
-        String inputStr = scanner.nextLine().trim(); //
+        String inputStr = scanner.nextLine().trim();
         try {
-            int menuInput = Integer.parseInt(inputStr);//입력
+            int menuInput = Integer.parseInt(inputStr); //입력
             switch (menuInput){
                 case 1: menuSelectBurger(); break;
                 case 2: menuSelectDrink(); break;
                 case 3: menuSelectDessert(); break;
-                case 4: shoppingCart.checkCart(); break;
+                case 4: orderCart(); break;
                 case 0: escapeKey = true; break;
                 default:
                     System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
@@ -162,15 +162,15 @@ public class Kiosk {
                         shoppingCart.addToCart(menuItem);
                         System.out.println("===============================");
                         System.out.println("해당 메뉴를 장바구니에 추가하셨습니다.");
-                        shoppingCart.checkCart();
-                        return; // 메서드 종료
+                        orderCart();
+                        return;
                     case 2:
                         System.out.println("===============================");
                         System.out.println("장바구니 추가를 취소하셨습니다.");
                         return; // 메서드 종료
                     default:
                         System.out.println("===============================");
-                        System.out.println("잚못 입력하셨습니다: " + inputKey);
+                        System.out.println("잚못 입력하셨습니다: " + checkKey);
                         break; // 스위치문 종료 > 다시 입력 받기
                 }
             } catch (NumberFormatException e) {
@@ -179,4 +179,45 @@ public class Kiosk {
         }
     }
 
+    // 장바구니 품목 계산
+    public void orderCart() {
+        if(shoppingCart.getShoppingCart().isEmpty()){
+            System.out.println("장바구니가 비어있습니다.");
+        } else {
+            shoppingCart.checkCart();
+            payToCart();
+        }
+    }
+
+    // 장바구니 결제
+    public void payToCart () {
+        System.out.println("===============================");
+        System.out.println("장바구니에 추가된 메뉴를 즉시 결제하시겠습니까?");
+        System.out.println("1. 결제 \t 2.메뉴판으로 돌아가기");
+        while (true){
+            String inputKey = scanner.nextLine().trim();
+            try {
+                int checkKey = Integer.parseInt(inputKey);
+                switch (checkKey){
+                    case 1:
+                        System.out.println("===============================");
+                        System.out.println("결제가 완료되었습니다.");
+                        System.out.printf("결제된 금액: W %-3.1f\n", shoppingCart.totalPrice());
+                        shoppingCart.removeCart();
+                        return;
+                    case 2:
+                        System.out.println("===============================");
+                        System.out.println("메뉴판으로 돌아갑니다.");
+                        return;
+                    default:
+                        System.out.println("===============================");
+                        System.out.println("잚못 입력하셨습니다: " + checkKey);
+                        break; // 스위치문 종료 > 다시 입력 받기
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해주세요: " + inputKey);
+            }
+        }
+    }
 }
+
