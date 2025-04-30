@@ -2,6 +2,7 @@ package kiosk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ShoppingCart {
 
@@ -22,9 +23,14 @@ public class ShoppingCart {
     }
 
     public void checkCart() {
-        System.out.println("=======장바구니 조회========");
-        for (MenuItem list : getShoppingCart()) {
-            System.out.println(list);
+        System.out.println("==========장바구니 조회==========");
+
+        if(getShoppingCart().isEmpty()){ // 장바구니가 비어있을 경우 출력
+            System.out.println("장바구니가 비어있습니다.");
+        } else { // 장바구니에 담긴 메뉴가 있을 경우 출력
+            for (MenuItem list : getShoppingCart()) {
+                System.out.println(list);
+            }
         }
     }
 
