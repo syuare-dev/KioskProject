@@ -130,32 +130,32 @@ public class Kiosk {
     // 장바구니 추가 여부 확인 - 버거 메뉴
     public void checkBurgerAddToCart(int index) {
         MenuItem select = menu.getBurgerMenu().get(index - 1);
-        System.out.println("===============================");
-        System.out.print("장바구니에 추가하시겠습니까?(1:추가, 2:취소)");
-        String inputKey = scanner.nextLine().trim();
-        try {
-            int checkKey = Integer.parseInt(inputKey);
-            System.out.println("checkKey = " + checkKey);
-            switch (checkKey) {
-                case 1:
-                    shoppingCart.addToCart(select);
-                    System.out.println("===============================");
-                    System.out.println("해당 메뉴를 장바구니에 추가하셨습니다.");
-                    System.out.println(select);
-                    break;
-                case 2:
-                    System.out.println("===============================");
-                    System.out.println("장바구니 추가를 취소하셨습니다.");
-                    break;
-                default:
-                    System.out.println("===============================");
-                    System.out.println("잚못 입력하셨습니다: " + inputKey);
+
+        while (true){
+            System.out.println("===============================");
+            System.out.print("장바구니에 추가하시겠습니까?(1:추가, 2:취소)");
+            String inputKey = scanner.nextLine().trim();
+            try {
+                int checkKey = Integer.parseInt(inputKey);
+                switch (checkKey) {
+                    case 1:
+                        shoppingCart.addToCart(select);
+                        System.out.println("===============================");
+                        System.out.println("해당 메뉴를 장바구니에 추가하셨습니다.");
+                        System.out.println(select);
+                        return; // 메서드 종료
+                    case 2:
+                        System.out.println("===============================");
+                        System.out.println("장바구니 추가를 취소하셨습니다.");
+                        return; // 메서드 종료
+                    default:
+                        System.out.println("===============================");
+                        System.out.println("잚못 입력하셨습니다: " + inputKey);
+                        break; // 스위치문 종료 > 다시 입력 받기
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해주세요: " + inputKey);
             }
-        } catch (NumberFormatException e) {
-            System.out.println("숫자를 입력해주세요: " + inputKey);
         }
-
-
-
     }
 }
