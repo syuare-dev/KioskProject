@@ -30,16 +30,19 @@ public class Menu {
 
     // 기본 메뉴
     public void menuSelect() {
+        System.out.println("===============================");
         System.out.println("[ 기본 메뉴 ]");
         System.out.println("1. Burger");
         System.out.println("2. Drink");
         System.out.println("3. Dessert");
+        System.out.println("4. Checking Shopping Cart");
         System.out.println("0. Kiosk End");
     }
 
     // 버거 메뉴
     public void menuBoardBurger() {
         int num =1;
+        System.out.println("===============================");
         System.out.println("[ 맥도나루도 - 버거 ]");
         for(MenuItem item : burgerMenu) {
             System.out.println(num + ". " + item);
@@ -51,6 +54,7 @@ public class Menu {
     // 음료 메뉴
     public void menuBoardDrink() {
         int num =1;
+        System.out.println("===============================");
         System.out.println("[ 맥도나루도 - 음료 ]");
         for(MenuItem item : drinkMenu) {
             System.out.println(num + ". " + item);
@@ -62,6 +66,7 @@ public class Menu {
     // 디저트 메뉴
     public void menuBoardDessert() {
         int num =1;
+        System.out.println("===============================");
         System.out.println("[ 맥도나루도 - 디저트 ]");
         for(MenuItem item : dessertMenu) {
             System.out.println(num + ". " + item);
@@ -73,18 +78,21 @@ public class Menu {
     // 버거 단품 메뉴 조회
     public void singleMenuBurger(int index) {
         MenuItem select = burgerMenu.get(index-1);
+        System.out.println("===============================");
         System.out.println(select);
     }
 
     // 음료 단품 메뉴 조회
     public void singleMenuDrink(int index) {
         MenuItem select = drinkMenu.get(index-1);
+        System.out.println("===============================");
         System.out.println(select);
     }
 
     // 디저트 단품 메뉴 조회
     public void singleMenuDessert(int index) {
         MenuItem select = dessertMenu.get(index-1);
+        System.out.println("===============================");
         System.out.println(select);
     }
 
