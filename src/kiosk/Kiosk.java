@@ -24,18 +24,24 @@ public class Kiosk {
         do {
             System.out.println("===============================");
             System.out.print("메뉴를 선택해주세요: ");
-            String inputStr = scanner.nextLine().trim(); // 메뉴 입력란
-            int menuInput = Integer.parseInt(inputStr);//입력
-            switch (menuInput){
-                case 1: menuSelectBurger(); break;
-                case 2: menuSelectDrink(); break;
-                case 3: menuSelectDessert(); break;
-                case 0:
-                    escapeKey = true;
-                    break;
-                default:
-                    System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
+            String inputStr = scanner.nextLine().trim(); //
+            try {
+                // 메뉴 입력란
+                int menuInput = Integer.parseInt(inputStr);//입력
+                switch (menuInput){
+                    case 1: menuSelectBurger(); break;
+                    case 2: menuSelectDrink(); break;
+                    case 3: menuSelectDessert(); break;
+                    case 0:
+                        escapeKey = true;
+                        break;
+                    default:
+                        System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해주세요: " + inputStr);
             }
+
         } while (!escapeKey);
     }
 
