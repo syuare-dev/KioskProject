@@ -16,7 +16,7 @@ public class Menu {
     // 기능(메서드)
     // 메뉴 추가 - category
     public void addMenu(MenuItem menuItem) {
-        switch(menuItem.getCategory()) {
+        switch (menuItem.getCategory()) {
             case "Burger":
                 burgerMenu.add(menuItem);
                 break;
