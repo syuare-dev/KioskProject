@@ -40,14 +40,6 @@ public class Menu {
 
     // 음료 메뉴 조회
     public void menuBoardDrink() {
-//        int num =1;
-//        System.out.println("===============================");
-//        System.out.println("[ 맥도나루도 - 음료 ]");
-//        for(MenuItem item : drinkMenu) {
-//            System.out.println(num + ". " + item);
-//            num++;
-//        }
-//
         IntStream
                 .range(0, drinkMenu.size())
                 .forEach(num -> System.out.println((num+1) + ". " + drinkMenu.get(num)));
@@ -57,13 +49,9 @@ public class Menu {
 
     // 디저트 메뉴 조회
     public void menuBoardDessert() {
-        int num =1;
-        System.out.println("===============================");
-        System.out.println("[ 맥도나루도 - 디저트 ]");
-        for(MenuItem item : dessertMenu) {
-            System.out.println(num + ". " + item);
-            num++;
-        }
+        IntStream
+                .range(0, dessertMenu.size())
+                .forEach(num -> System.out.println((num+1) + ". " + dessertMenu.get(num)));
         System.out.println("0. 뒤로가기");
     }
 
