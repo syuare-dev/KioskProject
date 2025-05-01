@@ -29,7 +29,8 @@ public class Kiosk {
 
     // 0. 메뉴 선택
     public void menuSelectMain() {
-        menu.menuSelect(); //
+//        menu.menuSelect(); // 기본 메뉴 출력
+        menuSelect();
         System.out.println("===============================");
         System.out.print("메뉴를 선택해주세요: ");
         // 메뉴 입력란
@@ -48,6 +49,19 @@ public class Kiosk {
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요: " + inputStr);
         }
+    }
+
+    // 기본 메뉴
+    public void menuSelect() {
+        System.out.println("===============================");
+        System.out.println("[ 기본 메뉴 ]");
+        System.out.println("1. Burger");
+        System.out.println("2. Drink");
+        System.out.println("3. Dessert");
+        if(!shoppingCart.getShoppingCart().isEmpty()){ // 장바구니에 메뉴가 추가되었을 때만 출력되도록 함
+            System.out.println("4. Orders");
+        }
+        System.out.println("0. Kiosk End");
     }
 
 
@@ -194,7 +208,7 @@ public class Kiosk {
     // 장바구니 결제
     public void payToCart () {
         System.out.println("===============================");
-        System.out.println("장바구니에 추가된 메뉴를 즉시 결제하시겠습니까?");
+        System.out.println("장바구니에 추가된 메뉴를 결제하시겠습니까?");
         System.out.println("1. 결제 \t 2.메뉴판으로 돌아가기");
         while (true){
             String inputKey = scanner.nextLine().trim(); // 문자열 입력
