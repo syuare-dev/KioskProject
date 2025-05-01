@@ -2,6 +2,7 @@ package kiosk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 
 public class ShoppingCart {
@@ -17,6 +18,9 @@ public class ShoppingCart {
     public void addToCart(MenuItem menuItem) {
         shoppingCart.add(menuItem);
     }
+    public void delInCart(MenuItem menuItem) {
+        shoppingCart.remove(menuItem);
+    }
 
     // 장바구니에 포함된 메뉴 삭제
     public void removeCart(){
@@ -29,21 +33,21 @@ public class ShoppingCart {
 
     // 장바구니 조회
     public void checkCart() {
-        int num =1;
         System.out.println("==========장바구니 조회==========");
-        for (MenuItem list : getShoppingCart()) {
-            System.out.println(num + ". " + list);
-            num++;
-        }
+        // 장바구니 조회 > Lambda&Stream 코드
+        IntStream.range(0,getShoppingCart().size())
+                .forEach(num -> System.out.println((num+1) + ". " + shoppingCart.get(num)));
+
         System.out.printf("- 총 금액: W %-3.1f\n",totalPrice());
     }
 
     // 장바구니에 포함된 메뉴들의 금액 합산
     public double totalPrice() {
-        double totalPrice = 0;
-        for(MenuItem tp : getShoppingCart()) {
-            totalPrice += tp.getPrice();
-        }
-        return totalPrice;
+        // 금액 합산 조회 > Lambda&Stream
+        return getShoppingCart()
+                .stream()
+                .mapToDouble(MenuItem::getPrice)
+                .sum();
+
     }
 }
