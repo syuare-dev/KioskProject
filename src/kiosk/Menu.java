@@ -2,6 +2,7 @@ package kiosk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Menu {
 
@@ -30,13 +31,18 @@ public class Menu {
 
     // 버거 메뉴 조회
     public void menuBoardBurger() {
-        int num =1;
-        System.out.println("===============================");
-        System.out.println("[ 맥도나루도 - 버거 ]");
-        for(MenuItem item : burgerMenu) {
-            System.out.println(num + ". " + item);
-            num++;
-        }
+//        int num =1;
+//        System.out.println("===============================");
+//        System.out.println("[ 맥도나루도 - 버거 ]");
+//        for(MenuItem item : burgerMenu) {
+//            System.out.println(num + ". " + item);
+//            num++;
+//        }
+
+        IntStream // 순서가 있는 정수가 필요한 반복문 표현을 위해 IntStream 사용
+                .range(0, burgerMenu.size()) // 종료 시점 설정
+                .forEach(num -> System.out.println((num+1) + ". " + burgerMenu.get(num))); // 반복 처리 > 출력 형식 설정
+
 
         System.out.println("0. 뒤로가기");
     }
