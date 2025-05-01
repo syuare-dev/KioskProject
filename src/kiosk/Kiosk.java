@@ -1,6 +1,8 @@
 package kiosk;
 
+import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Kiosk {
 
@@ -29,7 +31,6 @@ public class Kiosk {
 
     // 0. 메뉴 선택
     public void menuSelectMain() {
-//        menu.menuSelect(); // 기본 메뉴 출력
         menuSelect();
         System.out.println("===============================");
         System.out.print("메뉴를 선택해주세요: ");
@@ -198,6 +199,7 @@ public class Kiosk {
     // 장바구니 확인
     public void orderCart() {
         if(shoppingCart.getShoppingCart().isEmpty()){
+            System.out.println("===============================");
             System.out.println("장바구니가 비어있습니다.");
         } else {
             shoppingCart.checkCart(); // 장바구니 메뉴 조회
@@ -207,10 +209,10 @@ public class Kiosk {
 
     // 장바구니 결제
     public void payToCart () {
-        System.out.println("===============================");
-        System.out.println("장바구니에 추가된 메뉴를 결제하시겠습니까?");
-        System.out.println("1. 결제 \t 2.메뉴판으로 돌아가기");
         while (true){
+            System.out.println("===============================");
+            System.out.println("장바구니에 추가된 메뉴를 결제하시겠습니까?");
+            System.out.println("1. 결제 \t 2.메뉴판으로 돌아가기 \t 3. 장바구니 메뉴 삭제");
             String inputKey = scanner.nextLine().trim(); // 문자열 입력
             try {
                 int checkKey = Integer.parseInt(inputKey); // 입력값 정수로
@@ -225,11 +227,71 @@ public class Kiosk {
                         System.out.println("===============================");
                         System.out.println("메뉴판으로 돌아갑니다.");
                         return;
+                    case 3:
+                        if(shoppingCart.getShoppingCart().isEmpty()){
+                            orderCart(); // 장바구니에 메뉴가 없기 때문에 isEmpty일 때의 조건만 수행
+//                            System.out.println("===============================");
+//                            System.out.println("장바구니가 비어있습니다.");
+                        } else {
+                            deleteInCart();
+                        }
+                        break;
                     default:
                         System.out.println("===============================");
                         System.out.println("잚못 입력하셨습니다: " + checkKey);
                         break; // 스위치문 종료 > 다시 입력 받기
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해주세요: " + inputKey);
+            }
+        }
+    }
+
+    // 장바구니에서 품목 삭제
+    public void deleteInCart() {
+        while (true){
+            shoppingCart.checkCart();
+            System.out.println("===============================");
+            System.out.print("장바구니에서 삭제할 메뉴를 선택하세요(취소:0): ");
+            String inputKey = scanner.nextLine().trim();
+            try {
+                int checkKey = Integer.parseInt(inputKey);
+                if(checkKey == 0) { // 탈출
+                    System.out.println("===============================");
+                    System.out.println("뒤로 돌아갑니다.");
+                    return;
+                }
+                // 기존 코드
+//                else if (checkKey >= 1 && checkKey <= shoppingCart.getShoppingCart().size()) {
+//                    System.out.println("===============================");
+//                    System.out.println("장바구니에서 삭제한 메뉴는 다음과 같습니다.");
+//                    MenuItem select = shoppingCart.getShoppingCart().get(checkKey-1); // 장바구니 삭제 메뉴 선택
+//                    System.out.println(select); // 장바구니 삭제할 메뉴 출력
+//                    shoppingCart.delInCart(select); // 장바구니 메뉴 중 선택 메뉴 삭제
+//                    shoppingCart.checkCart(); // 장바구니 조회
+//                    return;
+//                } else {
+//                    System.out.println("잘못 입력하셨습니다: " + checkKey);
+//                }
+
+                // 값이 있을수도 없을수도 있으니 Optional 활용 (checkKey가 장바구니 범위를 벗어날 경우)
+                Optional<MenuItem> selectMenu = IntStream.range(0,shoppingCart.getShoppingCart().size())
+                        .filter(i -> i == checkKey-1) // index 값을 i로 반환
+                        .mapToObj(i -> shoppingCart.getShoppingCart().get(i)) // index i 로 객체 찾기
+                        .findFirst(); // 조건에 맞는 첫번째 값을 가져오기
+
+                // isPresent: Optional 안에 값이 있을 경우에만 작업 수행하는 명령어
+                if(selectMenu.isPresent()) {
+                    System.out.println("===============================");
+                    System.out.println("장바구니에서 삭제한 메뉴는 다음과 같습니다.");
+                    System.out.println(selectMenu.get()); // 장바구니 삭제할 메뉴 출력
+                    shoppingCart.delInCart(selectMenu.get()); // 장바구니 메뉴 중 선택 메뉴 삭제
+                    shoppingCart.checkCart(); // 장바구니 조회
+                    return;
+                } else {
+                    System.out.println("잘못 입력하셨습니다: " + checkKey);
+                }
+
             } catch (NumberFormatException e) {
                 System.out.println("숫자를 입력해주세요: " + inputKey);
             }
