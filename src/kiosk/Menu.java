@@ -32,7 +32,7 @@ public class Menu {
     // 버거 메뉴 조회
     public void menuBoardBurger() {
         IntStream // 순서가 있는 정수가 필요한 반복문 표현을 위해 IntStream 사용
-                .range(0, burgerMenu.size()) // 종료 시점 설정
+                .range(0, burgerMenu.size()) // 0~burgerMenu의 사이즈 -1(index) 까지 stream 생성 (반복 종료 조건 생성)
                 .forEach(num -> System.out.println((num+1) + ". " + burgerMenu.get(num))); // 반복 처리 > 출력 형식 설정
 
         System.out.println("0. 뒤로가기");
