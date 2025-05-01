@@ -218,9 +218,11 @@ public class Kiosk {
                 int checkKey = Integer.parseInt(inputKey); // 입력값 정수로
                 switch (checkKey){
                     case 1:
+                        discountType();
+                        totalPriceApplyDiscountRate(checkKey);
                         System.out.println("===============================");
                         System.out.println("결제가 완료되었습니다.");
-                        System.out.printf("결제된 금액: W %-3.1f\n", shoppingCart.totalPrice()); // 장바구니 메뉴 총 금액
+                        System.out.printf("결제된 금액: W %-3.1f\n", totalPriceApplyDiscountRate(checkKey)); // 장바구니 메뉴 총 금액
                         shoppingCart.removeCart(); // 장바구니 초기화
                         return;
                     case 2:
@@ -230,8 +232,6 @@ public class Kiosk {
                     case 3:
                         if(shoppingCart.getShoppingCart().isEmpty()){
                             orderCart(); // 장바구니에 메뉴가 없기 때문에 isEmpty일 때의 조건만 수행
-//                            System.out.println("===============================");
-//                            System.out.println("장바구니가 비어있습니다.");
                         } else {
                             deleteInCart();
                         }
@@ -297,5 +297,46 @@ public class Kiosk {
             }
         }
     }
+
+
+    public void discountType() {
+        System.out.println("===============================");
+        System.out.println("아래에 해당하시는 분은 할인 대상 입니다.");
+//        int num = 1;
+//        for(CustomerType discount : CustomerType.values()) {
+//            System.out.println(num + ". " + discount.getCustomerType());
+//            num++;
+//        }
+
+        while (true){
+            CustomerType.printDiscountType(); // 할인 대상자 조회 메서드 호출
+            System.out.println("===============================");
+            System.out.print("해당하시는 할인 대상을 선택해주세요: ");
+            String inputKey = scanner.nextLine().trim();
+            try {
+                int checkKey = Integer.parseInt(inputKey);
+                if (checkKey >= 1 && checkKey <= CustomerType.values().length) {
+                    CustomerType selectType = CustomerType.values()[checkKey-1];
+                    System.out.println("===============================");
+                    System.out.println("선택하신 할인 대상: "
+                            + selectType.getCustomerType() + "이며, 할인율은 "
+                            + selectType.getDiscountRate() + "% 입니다.");
+                    break;
+                } else {
+                    System.out.println("잘못 입력하셨습니다: " + checkKey);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("===============================");
+                System.out.println("숫자를 입력해주세요: " + inputKey);
+            }
+        }
+    }
+
+    public double totalPriceApplyDiscountRate(int discountType) {
+        return shoppingCart.totalPrice()
+                - (shoppingCart.totalPrice()
+                * ((double) CustomerType.values()[discountType-1].getDiscountRate())/100);
+    }
+
 }
 
