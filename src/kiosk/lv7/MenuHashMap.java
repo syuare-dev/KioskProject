@@ -1,4 +1,4 @@
-package kiosk;
+package kiosk.lv7;
 
 import java.util.ArrayList;
 import java.util.HashMap;

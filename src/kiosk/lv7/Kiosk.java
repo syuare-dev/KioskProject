@@ -1,4 +1,4 @@
-package kiosk;
+package kiosk.lv7;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -75,7 +75,7 @@ public class Kiosk {
             String burgerSelect = scanner.nextLine().trim(); // 문자열 입력
             try { // 버거 메뉴 선택
                 int bsNum = Integer.parseInt(burgerSelect); // 입력값 > 정수로
-                if(bsNum == 0) { // 탈출
+                if (bsNum == 0) { // 탈출
                     System.out.println("===============================");
                     System.out.println("뒤로 돌아갑니다.");
                     break;
@@ -102,7 +102,7 @@ public class Kiosk {
             String drinkSelect = scanner.nextLine().trim(); // 문자열 입력
             try { // 버거 메뉴 선택
                 int dsNum = Integer.parseInt(drinkSelect); // 입력값 > 정수로
-                if(dsNum == 0) { // 탈출
+                if (dsNum == 0) { // 탈출
                     System.out.println("===============================");
                     System.out.println("뒤로 돌아갑니다.");
                     break;
@@ -129,7 +129,7 @@ public class Kiosk {
             String dessertSelect = scanner.nextLine().trim(); // 문자열 입력
             try { // 버거 메뉴 선택
                 int dstNum = Integer.parseInt(dessertSelect); // 입력값 > 정수로
-                if(dstNum == 0) { // 탈출
+                if (dstNum == 0) { // 탈출
                     System.out.println("===============================");
                     System.out.println("뒤로 돌아갑니다.");
                     break;
@@ -198,7 +198,7 @@ public class Kiosk {
 
     // 장바구니 확인
     public void orderCart() {
-        if(shoppingCart.getShoppingCart().isEmpty()){
+        if (shoppingCart.getShoppingCart().isEmpty()){
             System.out.println("===============================");
             System.out.println("장바구니가 비어있습니다.");
         } else {
@@ -281,7 +281,7 @@ public class Kiosk {
                         .findFirst(); // 조건에 맞는 첫번째 값을 가져오기
 
                 // isPresent: Optional 안에 값이 있을 경우에만 작업 수행하는 명령어
-                if(selectMenu.isPresent()) {
+                if (selectMenu.isPresent()) {
                     System.out.println("===============================");
                     System.out.println("장바구니에서 삭제한 메뉴는 다음과 같습니다.");
                     System.out.println(selectMenu.get()); // 장바구니 삭제할 메뉴 출력
