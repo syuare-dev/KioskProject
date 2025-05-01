@@ -1,4 +1,4 @@
-package kiosk;
+package kiosk.lv4lv5;
 
 public class MenuItem {
 
@@ -43,5 +43,3 @@ public class MenuItem {
         return String.format("%-20s\t|\tW %-3.1f\t|\t%s", burger, price, description);
     }
 }
-
-
