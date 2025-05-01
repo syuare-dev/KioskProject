@@ -40,10 +40,11 @@ public class ShoppingCart {
 
     // 장바구니에 포함된 메뉴들의 금액 합산
     public double totalPrice() {
-        double totalPrice = 0;
-        for(MenuItem tp : getShoppingCart()) {
-            totalPrice += tp.getPrice();
-        }
-        return totalPrice;
+        // 금액 합산 조회 > Lambda&Stream
+        return getShoppingCart()
+                .stream()
+                .mapToDouble(MenuItem::getPrice)
+                .sum();
+
     }
 }
